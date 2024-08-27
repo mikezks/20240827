@@ -32,10 +32,6 @@ export class FlightEditComponent implements OnChanges {
     this.store.select(routerFeature.selectRouteParams).subscribe(
       params => console.log(params)
     );
-
-    this.route.data.subscribe(
-      data => this.editForm.patchValue(data['flights'])
-    );
   }
 
   ngOnChanges(changes: SimpleChanges): void {
