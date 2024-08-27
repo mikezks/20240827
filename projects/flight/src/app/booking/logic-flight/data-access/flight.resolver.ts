@@ -9,7 +9,7 @@ import { FlightService } from "./flight.service";
   providedIn: 'root'
 })
 export class FlightResolver implements Resolve<Observable<Flight>> {
-  constructor(private flightService: FlightService) {}
+  constructor(private flightService: FlightService) { }
 
   resolve(route: ActivatedRouteSnapshot): MaybeAsync<Observable<Flight>> {
     const id = +(route.paramMap.get('id') ?? 0);

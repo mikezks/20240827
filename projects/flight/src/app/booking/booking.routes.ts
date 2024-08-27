@@ -32,6 +32,9 @@ export const BOOKING_ROUTES: Routes = [
           {
             path: 'search',
             component: FlightSearchComponent,
+            data: {
+              flights: []
+            }
           },
           {
             path: 'edit/:id',
