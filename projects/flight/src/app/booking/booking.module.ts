@@ -13,8 +13,7 @@ import { UiFlightModule } from './ui-flight/ui-flight.module';
 @NgModule({
   declarations: [
     FlightBookingComponent,
-    FlightEditComponent,
-    FlightSearchComponent
+    FlightEditComponent
   ],
   imports: [
     CommonModule,
