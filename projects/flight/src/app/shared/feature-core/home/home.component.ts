@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CONFIG_STATE_SIGNAL, injectApiUrl } from '../../util-config';
 
 
 @Component({
@@ -22,6 +23,8 @@ import { Component } from '@angular/core';
           <li>... and much more!</li>
         </ul>
       </div>
+
+      <p>{{ apiUrl }}</p>
     </div>
   `,
   styles: [`
@@ -31,4 +34,5 @@ import { Component } from '@angular/core';
   `]
 })
 export class HomeComponent {
+  protected apiUrl = injectApiUrl();
 }
