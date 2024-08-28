@@ -22,9 +22,9 @@ import { CONFIG_STATE_SIGNAL, injectApiUrl } from '../../util-config';
           <li>Performance</li>
           <li>... and much more!</li>
         </ul>
-      </div>
 
-      <p>{{ apiUrl }}</p>
+        <p>{{ apiUrl }}</p>
+      </div>
     </div>
   `,
   styles: [`
