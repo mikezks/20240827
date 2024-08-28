@@ -7,7 +7,10 @@
     <form>
       <div class="form-group">
         <label for="firstname">Firstname:</label>
-        <input [(ngModel)]="firstname" name="firstname" class="form-control" />
+        <input
+          [ngModel]="firstname()"
+          (ngModelChange)="firstname.set($event)"
+          name="firstname" class="form-control" />
       </div>
 
       <div class="form-group">
@@ -18,13 +21,14 @@
       <div class="form-group">
         <button
           (click)="search()"
-          [disabled]="!(firstname || lastname)"
+          [disabled]="!(firstname() || lastname())"
           class="btn btn-default"
         >
           Search
         </button>
 
         <div>{{ passengers().length }} passengers found!</div>
+        <div>Username: {{ username() }}</div>
       </div>
     </form>
   </div>
