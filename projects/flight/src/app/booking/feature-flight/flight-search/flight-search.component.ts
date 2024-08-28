@@ -35,12 +35,6 @@ export class FlightSearchComponent {
   protected flights$ = this.ticketsFacade.flights$;
 
   protected search(filter: FlightFilter): void {
-    runInInjectionContext(
-      this.injector,
-      () => {
-        console.log(inject(Injector))
-      }
-    )
     this.filter = filter;
 
     if (!this.filter.from || !this.filter.to) {
