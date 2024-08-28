@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CONFIG_STATE_SIGNAL, injectApiUrl } from '../../util-config';
+import { JsonPipe } from '@angular/common';
 
 
 @Component({
@@ -23,7 +24,7 @@ import { CONFIG_STATE_SIGNAL, injectApiUrl } from '../../util-config';
           <li>... and much more!</li>
         </ul>
 
-        <p>{{ apiUrl }}</p>
+        <p>{{ apiUrl() }}</p>
       </div>
     </div>
   `,
@@ -34,5 +35,14 @@ import { CONFIG_STATE_SIGNAL, injectApiUrl } from '../../util-config';
   `]
 })
 export class HomeComponent {
+  protected configState = inject(CONFIG_STATE_SIGNAL);
   protected apiUrl = injectApiUrl();
+
+  constructor() {
+    setTimeout(() => {
+      this.configState.update(
+        state => ({ ...state, apiUrl: 'dummy' })
+      )
+    }, 3_000);
+  }
 }
