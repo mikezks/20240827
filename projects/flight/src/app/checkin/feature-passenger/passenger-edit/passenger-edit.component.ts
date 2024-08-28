@@ -21,20 +21,15 @@ export class PassengerEditComponent {
   passengerService = inject(PassengerService);
 
   id = input.required<number, string>({ transform: numberAttribute });
-  // passenger = signal(initialPassenger);
-  id$ = toObservable(this.id);
-  passenger$ = this.id$.pipe(
-    switchMap(id => this.passengerService.findById(id))
+  passenger = toSignal(
+    toObservable(this.id).pipe(
+      switchMap(id => this.passengerService.findById(id))
+    ), { initialValue: initialPassenger }
   );
-  passenger = toSignal(this.passenger$, {
-    initialValue: initialPassenger
-  });
 
   constructor() {
     effect(() => console.log(this.id()));
     effect(() => this.editForm.patchValue(this.passenger()));
-
-
   }
 
   protected editForm = inject(NonNullableFormBuilder).group({
