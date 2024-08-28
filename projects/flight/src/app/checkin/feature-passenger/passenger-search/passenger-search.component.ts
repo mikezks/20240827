@@ -54,7 +54,7 @@ export class PassengerSearchComponent {
   }
 
   search(): void {
-    if (!(this.firstname || this.lastname)) return;
+    if (!(this.firstname() || this.lastname())) return;
 
     this.store.loadPassengers({
       firstName: this.firstname(),
