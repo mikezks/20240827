@@ -1,8 +1,9 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, computed, effect, inject, Injector, signal, untracked } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { PassengerStore, Passenger } from '../../logic-passenger';
+import { SIGNAL } from '@angular/core/primitives/signals';
 
 
 @Component({
@@ -17,6 +18,7 @@ import { PassengerStore, Passenger } from '../../logic-passenger';
 })
 export class PassengerSearchComponent {
   private store = inject(PassengerStore);
+  private injector = inject(Injector);
 
   firstname = signal('');
   lastname = signal('Smith');
@@ -51,9 +53,18 @@ export class PassengerSearchComponent {
     // isEven: true   -> not emitted by the computed signal
     // isEven: false
 
+    console.log(this.username[SIGNAL]);
+
+    effect(() => {
+      const firstname = this.firstname();
+      untracked(() => this.search());
+    });
   }
 
   search(): void {
+    effect(() => console.log(this.firstname()), {
+      injector: this.injector
+    });
     if (!(this.firstname() || this.lastname())) return;
 
     this.store.loadPassengers({

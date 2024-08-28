@@ -61,13 +61,13 @@
         <td>{{ passenger.bonusMiles }}</td>
         <td>{{ passenger.passengerStatus }}</td>
         <td>
-          <button
+          <!-- <button
             (click)="select(passenger)"
             class="btn btn-info btn-sm"
             style="min-width: 85px; margin-right: 5px"
           >
             Select
-          </button>
+          </button> -->
           <a
             [routerLink]="['../edit', passenger.id]"
             class="btn btn-success btn-sm"
